@@ -93,4 +93,7 @@ class Scrubber(object):
                 filth = next_filth
             else:
                 filth = filth.merge(next_filth)
-        yield filth
+        try:
+            yield filth
+        except StopIteration:
+            return
