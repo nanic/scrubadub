@@ -16,5 +16,6 @@ sphinx_rtd_theme
 
 # ipdb for convenience.
 # old versions needed for python 2.7 compatibility, despite what the docs say
+textblob==0.15.3
 ipython==5.4
 ipdb==0.10.2
