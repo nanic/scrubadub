@@ -25,13 +25,15 @@ class CredentialFilth(RegexFilth):
     @property
     def placeholder(self):
         ubeg, uend = self.match.span('username')
-        pbeg, pend = self.match.span('password')
-        return (
-            self.match.string[self.match.start():ubeg] +
-            self.prefix + self.username_placeholder + self.suffix +
-            self.match.string[uend:pbeg] +
-            self.prefix + self.password_placeholder + self.suffix
-        )
+        pbeg, _pend = self.match.span('password')
+        return (self.match.string[self.match.start():ubeg]
+                + self.prefix
+                + self.username_placeholder
+                + self.suffix
+                + self.match.string[uend:pbeg]
+                + self.prefix
+                + self.password_placeholder
+                + self.suffix)
 
     # override the replace_with method for credentials because the
     # prefix/suffix components are mixed into the placeholder

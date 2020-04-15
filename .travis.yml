@@ -1,6 +1,5 @@
 language: python
 python:
-  - "2.7"
   - "3.7"
 
 # install python dependencies including this package in the travis
@@ -12,7 +11,7 @@ install:
 # commands to run the testing suite. if any of these fail, travic lets us know
 script:
   - nosetests --with-coverage --cover-package=scrubadub
-  - pycodestyle --ignore=errors scrubadub/
+  - pycodestyle --ignore=W503 scrubadub/
   - cd docs && make html && cd -
 
 # commands to run after the tests successfully complete

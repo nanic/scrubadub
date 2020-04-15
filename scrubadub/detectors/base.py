@@ -19,7 +19,6 @@ class RegexDetector(Detector):
                 'RegexFilth required for RegexDetector'
             )
         if self.filth_cls.regex is None:
-            #raise Exception
             return
         for match in self.filth_cls.regex.finditer(text):
             yield self.filth_cls(match)
