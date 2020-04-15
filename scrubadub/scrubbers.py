@@ -14,7 +14,6 @@ class Scrubber(object):
 
     def __init__(self, *args, **kwargs):
         super(Scrubber, self).__init__(*args, **kwargs)
-
         # instantiate all of the detectors which, by default, uses all of the
         # detectors that are in the detectors.types dictionary
         self._detectors = {}
@@ -73,7 +72,8 @@ class Scrubber(object):
         # working right now and we can worry about efficiency later
         all_filths = []
         for detector in self._detectors.values():
-            for filth in detector.iter_filth(text):
+            filths = detector.iter_filth(text)
+            for filth in filths:
                 if not isinstance(filth, Filth):
                     raise TypeError('iter_filth must always yield Filth')
                 all_filths.append(filth)
@@ -85,7 +85,8 @@ class Scrubber(object):
         # this is where the Scrubber does its hard work and merges any
         # overlapping filths.
         if not all_filths:
-            raise StopIteration
+            #raise StopIteration
+            return
         filth = all_filths[0]
         for next_filth in all_filths[1:]:
             if filth.end < next_filth.beg:
